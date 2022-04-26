@@ -1,0 +1,665 @@
+swagger: '2.0'
+info:
+  description: 'Documentación de la api Kayser'
+  version: '1.0'
+  title: kayser
+  termsOfService: "http://www.google.com"
+  contact: {
+    name: 'Juan Manuel Jacobo Gallegos',
+    email: 'jacobo.proyectos@gmail.com'
+  }
+  license: {
+    name: 'Apache 2.0',
+    url:  'https://www.apache.org/'
+  }
+host: 127.0.0.1:5000
+basePath: /
+securityDefinitions: {}
+schemes:
+- https
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /categoria:
+    get:
+      description: ruta que devuelve todas las categorías de la base de datos.
+      summary: devuelve todas las categorias
+      tags:
+      - categoria
+      operationId: /categoria
+      deprecated: false #sirve para inhabilitar endpoint
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    post:
+      description: Ruta para agregar una categoría.
+      summary: crea una nueva categoria
+      tags:
+      - categoria
+      operationId: Post/categoria
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1categoriarequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /categoria/{idCategoria}:
+    get:
+      description: ruta que devuelve la categoría según IdCategoria
+      summary: busca categoría según ID
+      tags:
+      - categoria
+      operationId: /categoria/:idCategoria
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idCategoria'
+        in: 'path'
+        description:  'Id de la categoría a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      description: ruta para editar una categoría.
+      summary: modifica una categoria según ID
+      tags:
+      - categoria
+      operationId: Put/categoria/:idCategoria
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idCategoria'
+        in: 'path'
+        description:  'Id de la categoría a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1categoria~1%3AidCategoriaRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    delete:
+      description: ruta para eliminar una categoría de la base de datos.
+      summary: elimina una categoría según ID
+      tags:
+      - categoria
+      operationId: Delete/categoria/:idCategoria
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idCategoria'
+        in: 'path'
+        description:  'Id de la categoría a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /tipo:
+    post:
+      description: ruta para agregar un tipo de producto en la base de datos.
+      summary: Crea un tipo de producto.
+      tags:
+      - tipo
+      operationId: /tipo
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1tiporequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      description: ruta para listar todos los tipos de producto existentes en la base de datos.
+      summary: Lista todos los tipos de productos.
+      tags:
+      - tipo
+      operationId: Get/tipo
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /tipo/{idTipo}:
+    get:
+      description: ruta que muestra un tipo de producto segun id.
+      summary: busca tipo de producto según ID.
+      tags:
+      - tipo
+      operationId: /tipo/:idTipo
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idTipo'
+        in: 'path'
+        description:  'Id del Tipo de Producto a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: modifica un tipo de producto según ID.
+      tags:
+      - tipo
+      operationId: Put/tipo/:idTipo
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idTipo'
+        in: 'path'
+        description:  'Id del Tipo de Producto a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1tipo~1%3AidTipoRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    delete:
+      summary: elimina un tipo de producto según ID
+      tags:
+      - tipo
+      operationId: Delete/tipo/:idTipo
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idTipo'
+        in: 'path'
+        description:  'Id del Tipo de Producto a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /producto:
+    post:
+      description: ruta para registrar un producto en la base de datos.
+      summary: crea un producto.
+      tags:
+      - producto
+      operationId: /producto
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1productorequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      description: ruta para listar todos los productos registrados en la base de datos.
+      summary: Lista el catálogo de productos.
+      tags:
+      - producto
+      operationId: Get/producto
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /producto/{idProducto}:
+    put:
+      description: ruta para modificar datos de un producto en la base de datos.
+      summary: modificar producto según ID.
+      tags:
+      - producto
+      operationId: Put/producto/:idProducto
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idProducto'
+        in: 'path'
+        description:  'Id del Producto a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1producto~1%3AidProductoRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    delete:
+      description: ruta para eliminar un registro en la base de datos.
+      summary: eliminar un producto según ID.
+      tags:
+      - producto
+      operationId: Delete/producto/:idProducto
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idProducto'
+        in: 'path'
+        description:  'Id del Producto a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /buscar:
+    get:
+      description: ruta para buscar un producto con un criterío
+      summary: buscar un producto con un criterio
+      tags:
+      - general
+      operationId: /buscar
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: nombre
+        in: query
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /almacen:
+    get:
+      description: ruta para listar todos los almacenes registrados en la base de datos.
+      summary: Listar los Almacenes.
+      tags:
+      - almacen
+      operationId: /almacen
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    post:
+      description: ruta para crear un registro de almacen en la base de datos.
+      summary: Crear un Almacén.
+      tags:
+      - almacen
+      operationId: Post/almacen
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1almacenrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /almacen/{idAlmacen}:
+    get:
+      description: ruta para buscar un registro dependiendo del id.
+      summary: buscar un Almacén según ID.
+      tags:
+      - almacen
+      operationId: /almacen/:idAlmacen
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idAlmacen'
+        in: 'path'
+        description:  'Id del Almacén a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      description: ruta para modificar datos de un almacén dependiendo del ID.
+      summary: modificar un almacén según ID
+      tags:
+      - almacen
+      operationId: Put/almacen/:idAlmacen
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idAlmacen'
+        in: 'path'
+        description:  'Id del Almacén a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1almacen~1%3AidAlmacenRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    delete:
+      summary: eliminar un almacén según ID
+      tags:
+      - almacen
+      operationId: Delete/almacen/:idAlmacen
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idAlmacen'
+        in: 'path'
+        description:  'Id del Almacén a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /prodalm/{idAlmacen}:
+    get:
+      description: metodo para listar todos los productos de un almacen.
+      summary: Listar productos de un almacén.
+      tags:
+      - almacen
+      operationId: /prodalm/:idAlmacen
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: 'idAlmacen'
+        in: 'path'
+        description:  'Id del Almacén a buscar'
+        required: True
+        type: 'integer'
+        format: 'int64'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /bucarproducto:
+    get:
+      description: ruta para listar productos por un almacen y una categoria.
+      summary: Listar productos de un almacén y una categoría.
+      tags:
+      - almacen
+      operationId: /bucarproducto
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: categoria
+        in: query
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: almacen
+        in: query
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /prodalm:
+    get:
+      description: metodo para listar todas las relaciones producto - almacén.
+      summary: Listar relación entre producto-almacén
+      tags:
+      - producto_almacen
+      operationId: /prodalm
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    post:
+      description: metodo para agregar una relación entre producto - almacén en la base de datos.
+      summary: crear una relación producto-almacén
+      tags:
+      - producto_almacen
+      operationId: Post/prodalm
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1prodalmrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+definitions:
+  /categoriarequest:
+    title: /categoriarequest
+    type: object
+    properties:
+      categoria_nombre:
+        type: string
+      categoria_estado:
+        type: boolean
+    required:
+    - categoria_nombre
+    - categoria_estado
+  /categoria/:idCategoriaRequest:
+    title: /categoria/:idCategoriaRequest
+    type: object
+    properties:
+      categoria_nombre:
+        type: string
+      categoria_estado:
+        type: boolean
+    required:
+    - categoria_nombre
+    - categoria_estado
+  /tiporequest:
+    title: /tiporequest
+    type: object
+    properties:
+      tipo_nombre:
+        type: string
+    required:
+    - tipo_nombre
+  /tipo/:idTipoRequest:
+    title: /tipo/:idTipoRequest
+    type: object
+    properties:
+      tipo_nombre:
+        type: string
+    required:
+    - tipo_nombre
+  /productorequest:
+    title: /productorequest
+    type: object
+    properties:
+      producto_codigo:
+        type: string
+      producto_nombre:
+        type: string
+      producto_precio:
+        type: number
+        format: double
+      producto_imagen:
+        type: string
+      producto_estado:
+        type: boolean
+      categoriaId:
+        type: integer
+        format: int32
+      tipoId:
+        type: integer
+        format: int32
+    required:
+    - producto_codigo
+    - producto_nombre
+    - producto_precio
+    - producto_imagen
+    - producto_estado
+    - categoriaId
+    - tipoId
+  /producto/:idProductoRequest:
+    title: /producto/:idProductoRequest
+    type: object
+    properties:
+      producto_codigo:
+        type: string
+      producto_nombre:
+        type: string
+      producto_precio:
+        type: number
+        format: double
+      producto_imagen:
+        type: string
+      producto_estado:
+        type: boolean
+      categoriaId:
+        type: integer
+        format: int32
+      tipoId:
+        type: integer
+        format: int32
+    required:
+    - producto_codigo
+    - producto_nombre
+    - producto_precio
+    - producto_imagen
+    - producto_estado
+    - categoriaId
+    - tipoId
+  /almacenrequest:
+    title: /almacenrequest
+    type: object
+    properties:
+      almacen_codigo:
+        type: string
+      almacen_nombre:
+        type: string
+      almacen_estado:
+        type: boolean
+    required:
+    - almacen_codigo
+    - almacen_nombre
+    - almacen_estado
+  /almacen/:idAlmacenRequest:
+    title: /almacen/:idAlmacenRequest
+    type: object
+    properties:
+      almacen_codigo:
+        type: string
+      almacen_nombre:
+        type: string
+      almacen_estado:
+        type: boolean
+    required:
+    - almacen_codigo
+    - almacen_nombre
+    - almacen_estado
+  /prodalmrequest:
+    title: /prodalmrequest
+    type: object
+    properties:
+      prod_alm_stk:
+        type: integer
+        format: int32
+      prod_alm_est:
+        type: boolean
+      producto_id:
+        type: integer
+        format: int32
+      almacen_id:
+        type: integer
+        format: int32
+    required:
+    - prod_alm_stk
+    - prod_alm_est
+    - producto_id
+    - almacen_id
+tags:
+- name: categoria
+- name: tipo
+- name: producto
+- name: general
+- name: almacen
+- name: producto_almacen
